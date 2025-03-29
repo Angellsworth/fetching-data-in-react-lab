@@ -20,11 +20,16 @@ const App = () => {
   }, [])
 
   const handleSearch = (searchTerm) => {
+    const lowerTerm = searchTerm.toLowerCase()
+
     const filteredStarships = starshipsData.filter((ship) => 
-      ship.name.toLowerCase().includes(searchTerm.toLowerCase())
-    )
+      ship.name.toLowerCase().includes(lowerTerm) ||
+      ship.model.toLowerCase().includes(lowerTerm) ||
+      ship.manufacturer.toLowerCase().includes(lowerTerm) ||
+      ship.starship_class.toLowerCase().includes(lowerTerm))
     setDisplayedStarships(filteredStarships)
   }
+
   return (
     <main>
       <h1>Star Wars API</h1>
